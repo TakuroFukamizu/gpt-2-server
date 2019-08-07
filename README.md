@@ -44,6 +44,10 @@ curl -v -X GET "http://localhost:8080/api/conditional/samples?top_k=40&length=20
 - top_k: Integer value controlling diversity. 1 means only 1 word is considered for each step (token), resulting in deterministic completions, while 40 means 40 words are considered at each step. 0 (default) is a special setting meaning no restrictions. 40 generally is a good value.
 - length: Number of tokens in generated text, if None (default), is determined by model hyperparameters
 - nsamples: Number of samples to return total
+- model_name: 117M or 345M, which model to use
+- seed:  Integer seed for random number generators, fix seed to reproduce results
+- batch_size=1 : Number of batches (only affects speed/memory).  Must divide nsamples.
+- temperature=1 : Float value controlling randomness in boltzmann distribution. Lower temperature results in less random completions. As the temperature approaches zero, the model will become deterministic and repetitive. Higher temperature results in more random completions.
 - raw_text: Context tokens for condition of generating samples.
   
 #### request example

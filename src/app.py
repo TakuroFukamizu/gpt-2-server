@@ -13,9 +13,21 @@ def conditional_samples():
     length = request.args.get('length', default=None, type=int)
     top_k = request.args.get('top_k', default=0, type=int)
     model_name = request.args.get('model_name', default='117M', type=str)
+    seed = request.args.get('seed', default=None, type=int)
+    batch_size = request.args.get('batch_size', default=1, type=int)
+    temperature = request.args.get('temperature', default=1, type=int)
     
     samples = []
-    for sample in batch_model(nsamples=nsamples, raw_text=raw_text, top_k=top_k, length=length):
+    for sample in batch_model(
+        nsamples=nsamples,
+        raw_text=raw_text,
+        top_k=top_k,
+        length=length,
+        model_name=model_name,
+        seed=seed,
+        batch_size=batch_size,
+        temperature=temperature
+        ):
         samples.append(sample)
     return jsonify(samples)
 
